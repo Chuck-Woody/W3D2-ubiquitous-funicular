@@ -1,7 +1,9 @@
 
 class Card
 
-    FACE_VALUE = ["1","2","3","4","5","6","7","8"]
+    #FACE_VALUE = ["1","2","3","4","5","6","7","8"]
+
+    FACE_VALUE = ['P', 'L', 'T']
 
     def initialize(revealed)
         @face_value = FACE_VALUE.sample

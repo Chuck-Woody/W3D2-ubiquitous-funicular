@@ -1,6 +1,10 @@
+require_relative 'card.rb'
+
 class Board
 
-    attr_reader :grid,:size
+    
+
+    attr_reader :size, :grid
     def initialize
 
         @grid = Array.new(4) {Array.new(4)}
@@ -8,40 +12,50 @@ class Board
 
     end
 
-    def populate()
-        pairs = @size *2
-       
-        
-
-    end
-
-
-    def get_uniq_pairs
+    def populate
+        pairs = @size * 2
         arr = []
-       
-         
-        while arr.length < 17
-            
-            card1 = Card.new(true)
-            card2 = card1.dup()
-            #if the card value is already in the arr then dont create a card
-            unless arr.include?(card1)
-                
-                arr << card1
-                arr << card2
+            pairs.times do 
+                a = Card.new(true)
+                b = a.dup
+                arr << a
+                arr << b
             end
-                #create two identical cards
-                
-                #
-    
-            
-            
-            
+        
+            arr.shuffle!
+
+        @grid.each_with_index do |sub_arr, i1|
+            sub_arr.each_with_index do |el, i2|
+                @grid[i1, i2] = arr[i1][i2]
+            end
         end
-        arr 
+        return @grid
     end
 
 
+    # def get_uniq_pairs
+    #     arr = []      
+         
+    #     while arr.length < 17
+            
+    #         card1 = Card.new(true)
+    #         card2 = card1.dup()
+    #         unless arr.include?(card1)                 
+    #             arr << card1
+    #             arr << card2
+    #         end   
+    #     end
+    #     arr 
+    # end
+
+    def [](pos)
+        @grid[pos.first][pos.last]
+    end
+
+    def []=(pos, input)
+        @grid[pos.first][pos.last] = input 
+    end
+    
 
 
 
@@ -50,8 +64,3 @@ end
 
 a = Board.new()
 
-p a.grid
-
-p "-------"
-
-p a.size
