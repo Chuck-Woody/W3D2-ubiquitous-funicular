@@ -4,7 +4,7 @@ class Card
     #FACE_VALUE = ["1","2","3","4","5","6","7","8"]
 
     FACE_VALUE = ('a'..'z').to_a
-
+    attr_reader :revealed
     def self.shuffle(num_pairs)
         arr = FACE_VALUE.shuffle
         cards = []
@@ -25,6 +25,8 @@ class Card
     def face_value
         @face_value 
     end
+
+    
 
     def reveal
         @revealed = true

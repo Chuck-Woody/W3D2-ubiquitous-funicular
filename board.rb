@@ -49,11 +49,33 @@ class Board
         @grid[x][y] = value
     end
     
+    def render
+
+        @grid.each do |row| 
+            
+            row.each do |el|
+
+                #if the card is revealed show the value of the card
+                if el.revealed
+                    print el.face_value
+
+                else
+                    print  " "
+
+                end
+                #else we show nil 
+
+            
+            end
+            puts
+        end
+        put
+    end
 
 
 
 end
 
 
-a = Board.new()
+
 
