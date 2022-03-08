@@ -3,15 +3,27 @@ class Card
 
     #FACE_VALUE = ["1","2","3","4","5","6","7","8"]
 
-    FACE_VALUE = ['P', 'L', 'T']
+    FACE_VALUE = ('a'..'z').to_a
 
-    def initialize(revealed)
-        @face_value = FACE_VALUE.sample
+    def self.shuffle(num_pairs)
+        arr = FACE_VALUE.shuffle
+        cards = []
+            num_pairs.times do 
+                pot_card_value = arr.pop 
+                card1 = Card.new(pot_card_value)
+                card2 = Card.new(pot_card_value)
+                cards.concat([card1, card2])
+            end
+        return cards.shuffle
+    end
+
+    def initialize(value, revealed=false)
+        @face_value = value
         @revealed = revealed
     end
 
     def face_value
-        @face_value if @revealed 
+        @face_value 
     end
 
     def reveal
@@ -21,9 +33,6 @@ class Card
     def hide
         @revealed = false
     end
-
-
-
 
 end
 

@@ -5,39 +5,26 @@ class Board
     
 
     attr_reader :size, :grid
-    def initialize
 
-        @grid = Array.new(4) {Array.new(4)}
-        @size = @grid.length
+    def initialize(size=4)
+
+        @grid = Array.new(size) {Array.new(size)}
+        @size = size
 
     end
 
     def populate
-        pairs = @size * 2
-        arr = []
-            pairs.times do 
-                a = Card.new(true)
-                b = a.dup
-                arr << a
-                arr << b
-            end
-        
-            arr.shuffle!
 
-        # 
-        count = 0 
+        arr_shuffled_cards = Card.shuffle(@size * 2)
 
-        (0...3).each do |i|
-
-            @grid[i].each do |j|
-
-                @grid[[i,j]] = arr[count]
-                count += 1
-
+        (0...@size).each do |i|
+            @grid[i].each_with_index do |el, j|
+                @grid[i][j] = arr_shuffled_cards.pop                
             end
         end
-        return @grid
-        # p arr
+        
+
+
     end
 
 
@@ -57,13 +44,13 @@ class Board
     # end
 
     def [](pos)
-        row,col = pos
-        @grid[row,col]
+        x, y = pos
+        @grid[x][y]
     end
 
-    def []=(pos, input)
-        row, col = pos
-        @grid[row,col] = input 
+    def []=(pos, value)
+        x, y = pos
+        @grid[x][y] = value
     end
     
 
