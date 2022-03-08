@@ -2,8 +2,6 @@ require_relative 'card.rb'
 
 class Board
 
-    
-
     attr_reader :size, :grid
 
     def initialize(size=4)
@@ -23,8 +21,6 @@ class Board
             end
         end
         
-
-
     end
 
 
