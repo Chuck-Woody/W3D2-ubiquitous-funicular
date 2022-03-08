@@ -1,7 +1,7 @@
 
 class Card
 
-    FACE_VALUE = ['P', 'T', 'L']
+    FACE_VALUE = ["1","2","3","4","5","6","7","8"]
 
     def initialize(revealed)
         @face_value = FACE_VALUE.sample
@@ -15,6 +15,11 @@ class Card
     def reveal
         @revealed = true
     end
+
+    def hide
+        @revealed = false
+    end
+
 
 
 
