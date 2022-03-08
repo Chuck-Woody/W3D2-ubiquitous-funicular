@@ -24,12 +24,20 @@ class Board
         
             arr.shuffle!
 
-        @grid.each_with_index do |sub_arr, i1|
-            sub_arr.each_with_index do |el, i2|
-                @grid[i1, i2] = arr[i1][i2]
+        # 
+        count = 0 
+
+        (0...3).each do |i|
+
+            @grid[i].each do |j|
+
+                @grid[[i,j]] = arr[count]
+                count += 1
+
             end
         end
         return @grid
+        # p arr
     end
 
 
@@ -49,11 +57,13 @@ class Board
     # end
 
     def [](pos)
-        @grid[pos.first][pos.last]
+        row,col = pos
+        @grid[row,col]
     end
 
     def []=(pos, input)
-        @grid[pos.first][pos.last] = input 
+        row, col = pos
+        @grid[row,col] = input 
     end
     
 
