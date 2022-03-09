@@ -36,9 +36,9 @@ class Card
 
 end
 
-b = Card.new(false)
-a = Card.new(true)
-p a.face_value
-p b.face_value
+# b = Card.new(false)
+# a = Card.new(true)
+# p a.face_value
+# p b.face_value
 
-p b.face_value
+# p b.face_value
