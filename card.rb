@@ -1,7 +1,5 @@
 
-class Card
-
-    #FACE_VALUE = ["1","2","3","4","5","6","7","8"]
+class Card   
 
     FACE_VALUE = ('a'..'z').to_a
     attr_reader :revealed
@@ -28,7 +26,7 @@ class Card
 
     
 
-    def reveal
+    def turn_over
         @revealed = true
     end
 
@@ -42,5 +40,5 @@ b = Card.new(false)
 a = Card.new(true)
 p a.face_value
 p b.face_value
-p b.reveal
+
 p b.face_value

@@ -23,22 +23,6 @@ class Board
         
     end
 
-
-    # def get_uniq_pairs
-    #     arr = []      
-         
-    #     while arr.length < 17
-            
-    #         card1 = Card.new(true)
-    #         card2 = card1.dup()
-    #         unless arr.include?(card1)                 
-    #             arr << card1
-    #             arr << card2
-    #         end   
-    #     end
-    #     arr 
-    # end
-
     def [](pos)
         x, y = pos
         @grid[x][y]
@@ -51,28 +35,47 @@ class Board
     
     def render
 
-        @grid.each do |row| 
-            
-            row.each do |el|
+        print "  "
 
-                #if the card is revealed show the value of the card
+        (0...@size).each do |i|
+            print i.to_s + " "
+
+        end
+        puts
+        @grid.each_with_index do |row, i|             
+            print i.to_s + " "
+            row.each do |el|                
                 if el.revealed
-                    print el.face_value
+                    print el.face_value + ' '
 
                 else
-                    print  " "
+                    print  "  "
 
-                end
-                #else we show nil 
-
-            
+                end            
             end
             puts
         end
-        put
+        puts
+
     end
 
+    def won?
+        @grid.all? do |sub_arr|
+            sub_arr.all? do |el|
+                el.revealed == true
+            end
+        end
+    end
 
+    def reveal(pos)
+        x, y = pos
+        @grid[x][y].turn_over
+    end
+
+    def hide(pos)
+        x, y = pos
+        @grid[x][y].hide
+    end
 
 end
 
